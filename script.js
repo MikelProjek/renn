@@ -1,5 +1,5 @@
-const BIN_ID = "ISI_BIN_ID_KAMU";
-const API_KEY = "ISI_API_KEY_KAMU";
+const BIN_ID = "69490ddfae596e708fa9f6ba";
+const API_KEY = "$2a$10$OoGfcbF9niJ/J043OSywBukcHXQ/jeYEqT9Mp3Mismcuqw9Xjr4uy";
 
 async function sendMessage() {
   const text = document.getElementById("message").value;
