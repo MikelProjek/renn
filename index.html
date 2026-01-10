@@ -1,62 +1,71 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Pesan Anonim Publik</title>
+  <meta charset="UTF-8">
+  <title>Tonton Video</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #05080f, #0a1628, #0d1b33);
+      color: #fff;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+    }
 
-<style>
-body {
-  background: #111;
-  color: white;
-  font-family: Arial;
-  padding: 20px;
-}
+    video {
+      width: 80%;
+      max-width: 900px;
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0, 122, 255, 0.35);
+      outline: none;
+      transition: 0.4s;
+    }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-}
+    video:hover {
+      box-shadow: 0 20px 60px rgba(0, 122, 255, 0.6);
+      transform: scale(1.01);
+    }
 
-textarea, button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-}
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.97);}
+      to {opacity: 1; transform: scale(1);}
+    }
 
-button {
-  background: #00ff99;
-  border: none;
-  cursor: pointer;
-}
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 18px;
+      font-size: 13px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      backdrop-filter: blur(6px);
+    }
 
-.message {
-  background: #222;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.time {
-  font-size: 10px;
-  color: #aaa;
-}
-</style>
+    .back-btn:hover {
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 15px rgba(0,123,255,0.4);
+    }
+  </style>
 </head>
-
 <body>
-<div class="container">
-  <h2>📢 Pesan Anonim</h2>
 
-  <textarea id="message" placeholder="Tulis pesan anonim..." rows="3"></textarea>
-  <button onclick="sendMessage()">Kirim</button>
-  <p id="status"></p>
+  <a class='back-btn' href='/'>⬅ Kembali</a>
 
-  <hr>
+  <video controls>
+    <source src="video.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video.
+  </video>
 
-  <div id="messages"></div>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
