@@ -35,6 +35,13 @@ body{
   transition:0.4s ease;
 }
 
+  .video-box.center {
+  grid-column: 1 / -1;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
 /* VIDEO SAAT PLAY */
 .video-box.playing{
   transform:scale(1.03);
@@ -103,7 +110,7 @@ video{
     <div class="overlay">?</div>
   </div>
 
-   <div class="video-box" onclick="playVideo(this)">
+   <div class="video-box center" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video1.mp4" type="video/mp4">
     </video>
@@ -138,3 +145,4 @@ function playVideo(box){
 
 </body>
 </html>
+
