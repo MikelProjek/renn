@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Galeri Video REN</title>
+<title>Galeri Video</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -17,7 +17,6 @@ body{
   color:#fff;
 }
 
-/* GRID */
 .container{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -36,26 +35,22 @@ body{
   transition:0.4s ease;
 }
 
-/* SAAT PLAY */
+/* VIDEO SAAT PLAY */
 .video-box.playing{
   transform:scale(1.03);
-}
-
-/* VIDEO KE-5 CENTER */
-.video-box.center{
-  grid-column:1 / -1;
-  max-width:500px;
-  margin:0 auto;
 }
 
 /* VIDEO */
 video{
   width:100%;
-  height:100%;
-  display:block;
   aspect-ratio:16 / 9;
   object-fit:cover;
-  object-position: top center; /* FOKUS KE ATAS */
+  object-position:center; /* DEFAULT NORMAL */
+}
+
+/* HANYA VIDEO KE-2 */
+.video-box.top video{
+  object-position: top center;
 }
 
 /* OVERLAY */
@@ -69,11 +64,6 @@ video{
   font-weight:bold;
   background:rgba(0,0,0,0.55);
   color:#fff;
-  transition:0.3s;
-}
-
-.video-box:hover .overlay{
-  background:rgba(0,0,0,0.35);
 }
 </style>
 </head>
@@ -82,7 +72,7 @@ video{
 
 <div class="container">
 
-  <!-- VIDEO 1 -->
+  <!-- VIDEO 1 (NORMAL) -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video5.mp4" type="video/mp4">
@@ -90,15 +80,15 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 2 -->
-  <div class="video-box" onclick="playVideo(this)">
+  <!-- VIDEO 2 (FOKUS KE ATAS) -->
+  <div class="video-box top" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video2.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 3 -->
+  <!-- VIDEO 3 (NORMAL) -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video3.mp4" type="video/mp4">
@@ -106,21 +96,20 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 4 -->
-  <div class="video-box" onclick="playVideo(this)">
+   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video4.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 5 CENTER -->
-  <div class="video-box center" onclick="playVideo(this)">
+   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video1.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
+
 
 </div>
 
@@ -129,7 +118,6 @@ function playVideo(box){
   const video = box.querySelector("video");
   const overlay = box.querySelector(".overlay");
 
-  // cegah klik berulang
   if(!video.paused) return;
 
   box.classList.add("playing");
@@ -138,7 +126,6 @@ function playVideo(box){
   video.currentTime = 0;
   video.play();
 
-  // saat video selesai
   video.onended = function(){
     video.pause();
     video.currentTime = 0;
