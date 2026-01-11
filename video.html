@@ -1,71 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Tonton Video</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #05080f, #0a1628, #0d1b33);
-      color: #fff;
-      overflow: hidden;
-      animation: fadeIn 0.8s ease;
-    }
+<meta charset="UTF-8">
+<title>Tonton Video</title>
 
-    video {
-      width: 80%;
-      max-width: 900px;
-      border-radius: 14px;
-      box-shadow: 0 12px 40px rgba(0, 122, 255, 0.35);
-      outline: none;
-      transition: 0.4s;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  min-height:100vh;
+  background:linear-gradient(135deg,#05080f,#0a1628,#0d1b33);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+}
 
-    video:hover {
-      box-shadow: 0 20px 60px rgba(0, 122, 255, 0.6);
-      transform: scale(1.01);
-    }
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  width:90%;
+  max-width:1200px;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.97);}
-      to {opacity: 1; transform: scale(1);}
-    }
+.video-box{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,122,255,0.35);
+  cursor:pointer;
+}
 
-    .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 10px 18px;
-      font-size: 13px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-      backdrop-filter: blur(6px);
-    }
+.video-box.center {
+  grid-column: 1 / -1;
+  max-width: 700px;
+  margin: 0 auto;
+}
 
-    .back-btn:hover {
-      background: rgba(255,255,255,0.2);
-      box-shadow: 0 0 15px rgba(0,123,255,0.4);
-    }
-  </style>
+
+video{
+  width:100%;
+  display:block;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:80px;
+  font-weight:bold;
+  background:rgba(0,0,0,0.55);
+  color:white;
+  transition:0.3s;
+}
+
+.video-box:hover .overlay{
+  background:rgba(0,0,0,0.35);
+}
+</style>
 </head>
+
 <body>
 
-  <a href="index.html" class="back-btn">⬅ Kembali</a>
+<div class="container">
 
-  <video controls>
-    <source src="video1.mp4" type="video/mp4">
-    Browser kamu tidak mendukung video.
-  </video>
+  <!-- VIDEO 1 -->
+  <div class="video-box" onclick="playVideo(this)">
+    <video poster="poster.png">
+      <source src="video5.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">?</div>
+  </div>
+
+  <!-- VIDEO 2 -->
+  <div class="video-box" onclick="playVideo(this)">
+    <video poster="poster.png">
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">?</div>
+  </div>
+
+  <!-- VIDEO 3 -->
+  <div class="video-box" onclick="playVideo(this)">
+    <video poster="poster.png">
+      <source src="video3.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">?</div>
+  </div>
+
+  <!-- VIDEO 4 -->
+  <div class="video-box" onclick="playVideo(this)">
+    <video poster="poster.png">
+      <source src="video4.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">?</div>
+  </div>
+
+  <!-- VIDEO 5 -->
+  <div class="video-box center" onclick="playVideo(this)">
+    <video poster="poster.png">
+      <source src="video1.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">?</div>
+  </div>
+
+</div>
+
+<script>
+function playVideo(box){
+  const video = box.querySelector("video");
+  const overlay = box.querySelector(".overlay");
+
+  overlay.style.display = "none";
+  video.setAttribute("controls","controls");
+  video.play();
+}
+</script>
 
 </body>
-
 </html>
