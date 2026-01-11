@@ -1,148 +1,113 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Galeri Video</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Mikel Projek</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0a0f1f, #0f1e3a, #09101d);
+      color: #fff;
+      overflow: hidden;
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:Poppins,sans-serif;
-  min-height:100vh;
-  background:linear-gradient(135deg,#05080f,#0a1628,#0d1b33);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-}
+    .login-box {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 42px;
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 123, 255, 0.15);
+      text-align: center;
+      width: 300px;
+      animation: fadeIn 0.8s ease;
+    }
 
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-  width:90%;
-  max-width:1200px;
-}
+    input {
+      width: 90%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+      outline: none;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
 
-/* BOX VIDEO */
-.video-box{
-  position:relative;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 12px 40px rgba(0,122,255,0.35);
-  cursor:pointer;
-  transition:0.4s ease;
-}
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #007bff80;
+    }
 
-  .video-box.center {
-  grid-column: 1 / -1;
-  max-width: 500px;
-  margin: 0 auto;
-}
+    button:hover {
+      box-shadow: 0 0 20px #007bffcc;
+      transform: scale(1.03);
+    }
 
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
 
-/* VIDEO SAAT PLAY */
-.video-box.playing{
-  transform:scale(1.03);
-}
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+      font-size: 12px;
+      opacity: 0;
+      transition: 0.3s;
+    }
 
-/* VIDEO */
-video{
-  width:100%;
-  aspect-ratio:16 / 9;
-  object-fit:cover;
-  object-position:center; /* DEFAULT NORMAL */
-}
-
-/* HANYA VIDEO KE-2 */
-.video-box.top video{
-  object-position: top center;
-}
-
-/* OVERLAY */
-.overlay{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:80px;
-  font-weight:bold;
-  background:rgba(0,0,0,0.55);
-  color:#fff;
-}
-</style>
+    .error.show {
+      opacity: 1;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-
-  <!-- VIDEO 1 (NORMAL) -->
-  <div class="video-box" onclick="playVideo(this)">
-    <video poster="poster.png">
-      <source src="video5.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">?</div>
+  <div class="login-box">
+    <h3>😈FIKOM😈</h3>
+    <h3>APA SLOGAN FIKOM🤙<h3>
+    <input type="password" id="password" placeholder="Masukkan Password">
+    <button onclick="checkPassword()">MASUK</button>
+    <div id="errorText" class="error">Password salah!</div>
   </div>
 
-  <!-- VIDEO 2 (FOKUS KE ATAS) -->
-  <div class="video-box top" onclick="playVideo(this)">
-    <video poster="poster.png">
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">?</div>
-  </div>
+  <script>
+    function checkPassword() {
+      const pwd = document.getElementById('password').value;
+      const errorText = document.getElementById('errorText');
 
-  <!-- VIDEO 3 (NORMAL) -->
-  <div class="video-box" onclick="playVideo(this)">
-    <video poster="poster.png">
-      <source src="video3.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">?</div>
-  </div>
-
-   <div class="video-box" onclick="playVideo(this)">
-    <video poster="poster.png">
-      <source src="video4.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">?</div>
-  </div>
-
-   <div class="video-box center" onclick="playVideo(this)">
-    <video poster="poster.png">
-      <source src="video1.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">?</div>
-  </div>
-
-
-</div>
-
-<script>
-function playVideo(box){
-  const video = box.querySelector("video");
-  const overlay = box.querySelector(".overlay");
-
-  if(!video.paused) return;
-
-  box.classList.add("playing");
-  overlay.style.display = "none";
-  video.setAttribute("controls","controls");
-  video.currentTime = 0;
-  video.play();
-
-  video.onended = function(){
-    video.pause();
-    video.currentTime = 0;
-    video.removeAttribute("controls");
-    overlay.style.display = "flex";
-    box.classList.remove("playing");
-  };
-}
-</script>
+      if (pwd === "enter") {
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "video.html";
+        }, 400);
+      } else {
+        errorText.classList.add("show");
+        setTimeout(() => {
+          errorText.classList.remove("show");
+        }, 1500);
+      }
+    }
+  </script>
 
 </body>
 </html>
-
