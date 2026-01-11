@@ -2,7 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Tonton Video</title>
+<title>Galeri Video</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body{
@@ -30,18 +31,24 @@ body{
   overflow:hidden;
   box-shadow:0 12px 40px rgba(0,122,255,0.35);
   cursor:pointer;
+  transition:0.4s ease;
 }
 
-.video-box.center {
-  grid-column: 1 / -1;
-  max-width: 700px;
-  margin: 0 auto;
+.video-box.playing{
+  transform:scale(1.03);
 }
 
+.video-box.center{
+  grid-column:1 / -1;
+  max-width:500px;
+  margin:0 auto;
+}
 
 video{
   width:100%;
   display:block;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
 }
 
 .overlay{
@@ -53,14 +60,9 @@ video{
   font-size:80px;
   font-weight:bold;
   background:rgba(0,0,0,0.55);
-  color:white;
+  color:#fff;
   transition:0.3s;
 }
-
-.overlay{
-  animation: fadeIn 0.4s ease;
-}
-
 
 .video-box:hover .overlay{
   background:rgba(0,0,0,0.35);
@@ -72,7 +74,6 @@ video{
 
 <div class="container">
 
-  <!-- VIDEO 1 -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video5.mp4" type="video/mp4">
@@ -80,7 +81,6 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 2 -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video2.mp4" type="video/mp4">
@@ -88,7 +88,6 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 3 -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video3.mp4" type="video/mp4">
@@ -96,7 +95,6 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 4 -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video4.mp4" type="video/mp4">
@@ -104,7 +102,7 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO 5 -->
+  <!-- VIDEO KE-5 CENTER -->
   <div class="video-box center" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video1.mp4" type="video/mp4">
@@ -119,21 +117,23 @@ function playVideo(box){
   const video = box.querySelector("video");
   const overlay = box.querySelector(".overlay");
 
+  if(!video.paused) return;
+
+  box.classList.add("playing");
   overlay.style.display = "none";
   video.setAttribute("controls","controls");
   video.currentTime = 0;
   video.play();
 
-  // Jika video selesai
   video.onended = function(){
     video.pause();
     video.currentTime = 0;
     video.removeAttribute("controls");
     overlay.style.display = "flex";
+    box.classList.remove("playing");
   };
 }
 </script>
-
 
 </body>
 </html>
