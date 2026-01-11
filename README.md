@@ -1,104 +1,103 @@
-📘 Panduan Mengubah dan Menambahkan File & Teks pada Website
+# 🎬 Galeri Video Interaktif (HTML, CSS & JavaScript)
 
-Website ini dibuat menggunakan HTML, CSS, dan JavaScript. Untuk melakukan perubahan atau penambahan konten seperti video, gambar poster, dan teks, ikuti panduan berikut.
+Website galeri video sederhana dengan tampilan modern.  
+Video akan menampilkan gambar poster sebelum diputar, lalu **memutar otomatis saat diklik** dan **kembali ke tampilan awal setelah selesai**.
 
-📁 Struktur File Website
+---
 
-Pastikan semua file berada dalam satu folder agar website berjalan dengan baik.
+## ✨ Fitur
+- Tampilan poster dengan tanda `?`
+- Klik untuk memutar video
+- Video kembali ke awal setelah selesai
+- Fokus video dapat diatur (contoh: video ke-2 fokus ke atas)
+- Responsif (Desktop & Mobile)
+- Mudah dikembangkan dan dimodifikasi
 
-index.html
-video.html
-poster.png
-video1.mp4
-video2.mp4
-video3.mp4
+---
 
+## 📁 Struktur Folder
+.
+├── index.html
+├── poster.png
+├── video1.mp4
+├── video2.mp4
+├── video3.mp4
+└── README.md
 
-Keterangan:
+yaml
+Salin kode
 
-index.html → file utama website
+---
 
-poster.png → gambar tampilan awal sebelum video diputar
+## 🎥 Cara Mengganti Video
+1. Masukkan file video baru ke folder project
+2. Buka `index.html`
+3. Cari baris berikut:
+   ```html
+   <source src="video2.mp4" type="video/mp4">
+Ganti nama file video sesuai kebutuhan:
 
-video1.mp4, video2.mp4, dst → file video yang ditampilkan
-
-🎬 Cara Mengganti File Video
-
-Siapkan file video dengan format .mp4
-
-Masukkan file video ke dalam folder website
-
-Buka file index.html
-
-Cari bagian berikut:
-
-<source src="video2.mp4" type="video/mp4">
-
-
-Ganti video2.mp4 dengan nama file video baru, contoh:
-
+html
+Salin kode
 <source src="tutorial.mp4" type="video/mp4">
-
-
-Simpan file dan refresh website
+Simpan file dan refresh browser
 
 ➕ Cara Menambahkan Video Baru
+Salin salah satu blok video:
 
-Copy salah satu blok video berikut:
-
+html
+Salin kode
 <div class="video-box" onclick="playVideo(this)">
   <video poster="poster.png">
     <source src="video4.mp4" type="video/mp4">
   </video>
   <div class="overlay">?</div>
 </div>
-
-
-Paste di bawah video terakhir
+Tempelkan di bawah video terakhir
 
 Ganti nama file videonya
 
-Jika ingin fokus ke atas, tambahkan class top:
+🎯 Mengatur Fokus Tampilan Video
+🔹 Video Normal (Default)
+css
+Salin kode
+video{
+  object-position: center;
+}
+🔹 Fokus ke Atas (contoh video ke-2)
+Tambahkan class top pada video:
 
+html
+Salin kode
 <div class="video-box top" onclick="playVideo(this)">
-
-🖼️ Cara Mengganti Gambar Poster
-
-Siapkan gambar poster (disarankan rasio 16:9)
-
+css
+Salin kode
+.video-box.top video{
+  object-position: top center;
+}
+🖼️ Mengganti Gambar Poster
 Ganti file poster.png dengan gambar baru
 atau
 
-Ubah nama file di HTML:
+Ubah atribut poster di HTML:
 
+html
+Salin kode
 <video poster="poster-baru.png">
+✏️ Mengubah Teks Overlay
+Cari baris berikut:
 
-✏️ Cara Mengubah Teks di Website
-1️⃣ Mengubah Tanda ?
-
-Cari kode berikut:
-
+html
+Salin kode
 <div class="overlay">?</div>
+Ganti teks sesuai keinginan:
 
-
-Ganti teks ? menjadi teks lain, contoh:
-
+html
+Salin kode
 <div class="overlay">PLAY</div>
+🧠 Catatan Penting
+Gunakan format video .mp4
 
-2️⃣ Menambahkan Judul atau Deskripsi
+Hindari spasi pada nama file
 
-Tambahkan teks di atas atau bawah video:
-
-<h3>Video Tutorial Lampu Motor</h3>
-<p>Klik video untuk memulai pemutaran</p>
-
-
-Contoh penempatan:
-
-<div class="video-box" onclick="playVideo(this)">
-  <h3>Video 2</h3>
-  <video poster="poster.png">
-    <source src="video2.mp4" type="video/mp4">
-  </video>
-  <div class="overlay">?</div>
-</div>
+Pastikan huruf besar-kecil nama file sesuai
