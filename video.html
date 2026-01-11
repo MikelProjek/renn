@@ -57,6 +57,11 @@ video{
   transition:0.3s;
 }
 
+.overlay{
+  animation: fadeIn 0.4s ease;
+}
+
+
 .video-box:hover .overlay{
   background:rgba(0,0,0,0.35);
 }
@@ -116,9 +121,19 @@ function playVideo(box){
 
   overlay.style.display = "none";
   video.setAttribute("controls","controls");
+  video.currentTime = 0;
   video.play();
+
+  // Jika video selesai
+  video.onended = function(){
+    video.pause();
+    video.currentTime = 0;
+    video.removeAttribute("controls");
+    overlay.style.display = "flex";
+  };
 }
 </script>
+
 
 </body>
 </html>
