@@ -25,6 +25,7 @@ body{
   max-width:1200px;
 }
 
+/* BOX VIDEO */
 .video-box{
   position:relative;
   border-radius:14px;
@@ -34,23 +35,32 @@ body{
   transition:0.4s ease;
 }
 
+  .video-box.center {
+  grid-column: 1 / -1;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+
+/* VIDEO SAAT PLAY */
 .video-box.playing{
   transform:scale(1.03);
 }
 
-.video-box.center{
-  grid-column:1 / -1;
-  max-width:500px;
-  margin:0 auto;
-}
-
+/* VIDEO */
 video{
   width:100%;
-  display:block;
   aspect-ratio:16 / 9;
   object-fit:cover;
+  object-position:center; /* DEFAULT NORMAL */
 }
 
+/* HANYA VIDEO KE-2 */
+.video-box.top video{
+  object-position: top center;
+}
+
+/* OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
@@ -61,11 +71,6 @@ video{
   font-weight:bold;
   background:rgba(0,0,0,0.55);
   color:#fff;
-  transition:0.3s;
-}
-
-.video-box:hover .overlay{
-  background:rgba(0,0,0,0.35);
 }
 </style>
 </head>
@@ -74,6 +79,7 @@ video{
 
 <div class="container">
 
+  <!-- VIDEO 1 (NORMAL) -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video5.mp4" type="video/mp4">
@@ -81,13 +87,15 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <div class="video-box" onclick="playVideo(this)">
+  <!-- VIDEO 2 (FOKUS KE ATAS) -->
+  <div class="video-box top" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video2.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
 
+  <!-- VIDEO 3 (NORMAL) -->
   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video3.mp4" type="video/mp4">
@@ -95,20 +103,20 @@ video{
     <div class="overlay">?</div>
   </div>
 
-  <div class="video-box" onclick="playVideo(this)">
+   <div class="video-box" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video4.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
 
-  <!-- VIDEO KE-5 CENTER -->
-  <div class="video-box center" onclick="playVideo(this)">
+   <div class="video-box center" onclick="playVideo(this)">
     <video poster="poster.png">
       <source src="video1.mp4" type="video/mp4">
     </video>
     <div class="overlay">?</div>
   </div>
+
 
 </div>
 
